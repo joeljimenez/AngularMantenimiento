@@ -1,0 +1,50 @@
+<div class="animated fadeIn">
+    
+    <h3 *ngIf="lista" class="text-center font-weight-bold">Lista de Los Administradores</h3>
+    <hr>
+ <br><br>
+ <div class="text-right">
+     
+        <button *ngIf="lista" class="btn btn-outline-dark" (click)= "mostrar()">
+        <i class="fas fa-plus-circle fa-1x"></i>  Agregar Administradores
+       
+        </button>
+        <br>
+      </div>
+    
+<div >
+    <br>
+    <div class="table-responsive">
+    <table class="table table-striped">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Nombre - Profesor</th>
+                <th scope="col">Usuario</th>
+                <th scope="col">Materia - Dicta</th>
+                <th scope="col">Actualizar</th>
+               
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let k of ad | llave" >
+                <td scope="row">{{ad[k].Nombre}}</td>
+                <td>{{ad[k].Usuario}}</td>
+                <td>{{ad[k].Materia}}</td>
+                <td>
+                    <button class="btn btn-block btn-outline-primary" (click)="Actua(k)">
+                            <i class="fas fa-sync fa-spin fa-1x"></i>
+                    </button>
+                </td>
+              </tr>
+              
+              
+            </tbody>
+          </table>
+          <div class="alert alert-danger text-center" *ngIf="(ad |llave).length==0">
+                <i class="far fa-frown fa-3x">  No hay Administradores Registrados </i> 
+               </div>
+</div>
+</div>
+
+
+

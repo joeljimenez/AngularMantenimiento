@@ -1,0 +1,56 @@
+
+<div class="animated fadeIn">
+    <h3 *ngIf="!lista" class="text-center font-weight-bold">Registro de Nuevos Adminstradores</h3>
+    <hr><br><br>
+    <div class="text-right">
+        <button  
+        type="button" class="btn btn-outline-success" (click)= "volver()">
+        <i class="fas fa-th-list fa-1x"></i>
+        Lista de Administradores
+        </button>
+    </div>
+
+<div >
+    <form (ngSubmit)="Registrar()">
+        <div>
+            <label class="text-left font-weight-bold" for="">Nombre Administrador</label>
+            <input class="form-control" [(ngModel)]="Aministrador.Nombre" name="Nombre" type="text" placeholder="EX: Joel Jimenez">
+        </div>
+             <div>
+                <label class="text-left font-weight-bold" for="">Usuario</label>
+                <input class="form-control" [(ngModel)]="Aministrador.Usuario" name="Usuario" type="text" placeholder="Ex: Joel1110">
+            </div>
+
+            <div>
+                <label class="text-left font-weight-bold" for="">Materia que dicta</label>
+                <input class="form-control" [(ngModel)]="Aministrador.Materia" name="Materia" type="text" placeholder="">
+            </div>
+
+        <div [hidden]="!habilita">
+            <label class="text-left font-weight-bold" for="">Ingrese Contraseña</label>
+            <input class="form-control" [(ngModel)]="Aministrador.Contra" name="Contra" type="password" >
+        </div>
+
+        <div [hidden]="!habilita">
+            <label class="text-left font-weight-bold" for="">Validar Contraseña</label>
+            <input class="form-control" [(ngModel)]="contraV" name="contraV" type="password" >
+        </div>
+        <div class="text-center">
+            <br>
+            <button type="submit" [disabled]="Guar1" class="btn btn-outline-primary">
+            <div  *ngIf="!Guar">
+                <i class="fas fa-save" *ngIf="!Guar1"> </i> <span *ngIf="!Guar1">Guardar Administrador</span>
+                <i class="fas fa-spinner fa-spin " *ngIf="Guar1"> </i> <span *ngIf="Guar1">Guardando</span>
+                </div>
+
+                <div  *ngIf="Guar">
+                        <i class="fas fa-sync" *ngIf="!Guar1"></i> <span *ngIf="!Guar1">Actualizar Administrador</span>
+                        <i class="fas fa-sync fa-spin" *ngIf="Guar1"></i> <span *ngIf="Guar1">Registrando</span>
+                        </div>
+                      </button>
+        </div>
+    </form>
+
+</div>
+
+</div>

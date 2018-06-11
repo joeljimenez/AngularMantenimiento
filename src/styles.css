@@ -1,1 +1,120 @@
 /* You can add global styles to this file, and also import other style files */
+
+li {
+    cursor: pointer;
+}
+
+.img {
+    border-radius: 50%;
+    width: 50%;
+    height: auto;
+}
+
+.img:hover {
+    opacity: 0.7;
+    border: 1px solid rgb(119, 119, 119);
+}
+
+.lista {
+    list-style: none;
+}
+
+.lista li {
+    padding: 5%;
+    background: white;
+    margin-left: -20%;
+    text-decoration: none;
+    color: #1a1919a6;
+}
+
+.lista li a:hover {
+    background: rgb(60, 66, 65);
+    color: #ffffff;
+    padding: 5%;
+    transition: 0.6s;
+    text-decoration: none;
+    border-bottom: 3px solid rgb(255, 255, 255);
+}
+
+.espacio {
+    padding-right: 10px;
+}
+
+.h41 {
+    color: #1a1919a6;
+}
+a{
+    color: #1a1919a6;
+}
+.titulo{
+    background: #000000;
+    color: #d4cecea6;
+    padding:20px;
+    width: 100%;
+    margin-bottom: 3%;
+}
+
+.scr{
+    width: 100%;
+    overflow: scroll;
+    height:400px;
+
+}
+.color{
+    color: red;
+    text-align: center;
+}
+ 
+.cabeza{
+    background:#000000;
+    color:rgb(238, 16, 16);
+}
+.contenido{
+    color:rgb(219, 18, 18);
+}
+.danger{
+    color:red;
+}
+
+.ca img{
+    width: 20%;
+}
+.login{
+ 
+    margin:5%;
+    padding:5%;
+    box-shadow: 2px 2px 3px 0px #bbbbbb;
+}
+label{
+    color: #1b0a0a;
+    font-weight: bold;
+}
+/* Animaciones */
+.animated {
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+  }
+  
+  .fast {
+    -webkit-animation-duration: 0.3s;
+    animation-duration: 0.3s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+  
+    to {
+      opacity: 1;
+    }
+  }
+  
+  .fadeIn {
+    animation-name: fadeIn;
+  }
+  

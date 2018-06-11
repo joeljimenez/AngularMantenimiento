@@ -1,0 +1,62 @@
+<div class="animated fadeIn ">
+    <h2 class="text-center font-weight-bold">Mantenimiento de Preguntas</h2>
+  <hr>
+    <br>
+
+      <div class="row">
+          <div class=" col-lg-6- col-md-6 col-sm-6 col-xs-6">
+
+        <input class="form-control col-lg-12" type="search" placeholder="Busqueda por dificultad" #buscarDifi (keyup)="Buscar(buscarDifi.value)" >
+         
+          </div>
+
+        <div class=" col-lg-6- col-md-6 col-sm-6 col-xs-6 text-right">
+            <button 
+            (click)="nuevaPr()"
+            type="button" class="btn btn-outline-primary btn-block">
+               <i class="fas fa-plus fa-1x" aria-hidden="true"></i>
+              Agregar Pregunta
+            </button>
+            <br>
+          </div>
+      </div>
+      <br>
+    <div class="table-responsive scr" >
+    <table class="table table-striped">
+        <thead class="thead-dark">
+          <tr>
+            
+            <th scope="col">Pregunta</th>
+          
+            <th scope="col">Dificultad</th>
+            <th scope="col">Agregada</th>
+            <th scope="col">Eliminar</th>
+            <th scope="col">Editar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr  *ngFor="let k of pre | llave ; let i=index">
+           
+            <td scope="row">{{pre[k].Pregunta}}</td>
+            
+            <td>{{pre[k].Dificultad}}</td>
+            <td>{{pre[k].Fecha | date:'yyyy-MM-dd HH:mm '}}</td>
+            <td>
+                <button class="btn btn-outline-danger btn-block"  (click)="Eliminar(k)"><i class="far fa-trash-alt"></i></button>
+                
+            </td>
+            <td>
+                <button class="btn btn-outline-secondary btn-block" (click)="Nuevo(k)" ><i class="fas fa-edit"></i> </button>
+            </td>
+
+          </tr>
+          
+        
+        </tbody>
+      </table>
+     
+      <div class="alert alert-danger text-center" *ngIf="(pre |llave).length==0">
+        <i class="far fa-frown fa-3x">  No hay Preguntas Registrada </i> 
+       </div>
+    </div>
+</div>
