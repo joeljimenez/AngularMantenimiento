@@ -1,29 +1,14 @@
 export interface Preguntas {
-    Correcta: number;
-    Opciones: {
-        A: {
-            AR: string,
-            indice: number
-        },
-        B: {
-            AR: string,
-            indice: number
-        },
-        C: {
-            AR: string,
-            indice: number
-        },
-        D: {
-            AR: string,
-            indice: number
-        },
-    };
+    IdPregunta: string;
     Pregunta: string;
-    Respondida: boolean;
-    Terminada: boolean;
+    Correcta: number;
+    OpcionA: string;
+    OpcionB: string;
+    OpcionC: string;
+    OpcionD: string;
     Fecha: any;
-    Dificultad: string;
-    Habilitado: boolean;
-    $key?: string;
+    FechaA: any;
+    Dificultad: number;
+
 }
 

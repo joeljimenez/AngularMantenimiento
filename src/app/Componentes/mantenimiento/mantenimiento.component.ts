@@ -12,11 +12,12 @@ import { Preguntas } from '../../Interfas/Pregunta';
 })
 export class MantenimientoComponent implements OnInit {
 pre: Preguntas[] = [];
-
+dificultad: string= '0';
 termino: any;
+di: boolean;
   constructor( public control: Router , public servicio: MantenimientoService ) {
 servicio.getPreguntas().subscribe(res => {
-this.pre = res;
+this.pre = res.Linea;
 console.log(this.pre);
 });
 
@@ -31,21 +32,31 @@ console.log(this.pre);
     this.control.navigate(['/Mantenimiento/AgregarPregunta' , 'Nuevo']);
   }
   Eliminar(id: string) {
+    console.log(id);
 this.servicio.Eliminar(id).subscribe(res => {
+  this.pre = res.Linea;
   console.log(res);
-  if ( res ) {
-    console.error(res);
-  } else {
-    delete this.pre[id];
-  }
 });
   }
 
-  Buscar(termino: string) {
-this.servicio.search(termino).subscribe(res => {
-  console.log(res);
+  Buscar() {
+this.servicio.search(this.dificultad).subscribe(res => {
+console.log(res);
+this.pre = res.Linea;
 
-  console.log(termino);
+if( this.dificultad == "0" ){
+  this.di = false;
+} else {
+  
+  if (this.pre.length == 0) {
+  this.di= true;
+} else {
+this.di = false;
+}
+}
+
+console.log(this.pre);
+console.log(this.dificultad);
 });
   }
 }

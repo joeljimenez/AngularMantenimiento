@@ -85,6 +85,9 @@ a{
     padding:5%;
     box-shadow: 2px 2px 3px 0px #bbbbbb;
 }
+.verd{
+    color:#28da8f;
+}
 label{
     color: #1b0a0a;
     font-weight: bold;
@@ -117,4 +120,18 @@ label{
   .fadeIn {
     animation-name: fadeIn;
   }
+  /**/
+  .form{
+      box-shadow: 1px 1px 1px 3px #c9c9c9;
+      padding: 5%;
+      margin-top: 10%;
+      opacity: 0.8;
+      
+      
+  }
   
+
+ .login_Label{
+     color:#000000af;
+     text-transform: uppercase;
+ }

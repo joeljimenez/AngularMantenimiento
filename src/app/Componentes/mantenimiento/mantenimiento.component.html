@@ -5,8 +5,13 @@
 
       <div class="row">
           <div class=" col-lg-6- col-md-6 col-sm-6 col-xs-6">
-
-        <input class="form-control col-lg-12" type="search" placeholder="Busqueda por dificultad" #buscarDifi (keyup)="Buscar(buscarDifi.value)" >
+            <select class="form-control" required  [(ngModel)]="dificultad" (change)=Buscar() >
+                <option value="0">---Dificultad De Pregunta---</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select>
+        <!--input class="form-control col-lg-12" type="search" placeholder="Busqueda por dificultad" #buscarDifi (keyup)="Buscar(buscarDifi.value)" -->
          
           </div>
 
@@ -35,18 +40,18 @@
           </tr>
         </thead>
         <tbody>
-          <tr  *ngFor="let k of pre | llave ; let i=index">
+          <tr  *ngFor="let k of pre ; let i=index">
            
-            <td scope="row">{{pre[k].Pregunta}}</td>
+            <td scope="row">{{k.Pregunta}}</td>
             
-            <td>{{pre[k].Dificultad}}</td>
-            <td>{{pre[k].Fecha | date:'yyyy-MM-dd HH:mm '}}</td>
+            <td>{{k.Dificultad}}</td>
+            <td>{{k.Fecha | date:'yyyy-MM-dd'}}</td>
             <td>
-                <button class="btn btn-outline-danger btn-block"  (click)="Eliminar(k)"><i class="far fa-trash-alt"></i></button>
+                <button class="btn btn-outline-danger btn-block"  (click)="Eliminar(k.Id_Pregunta)"><i class="far fa-trash-alt"></i></button>
                 
             </td>
             <td>
-                <button class="btn btn-outline-secondary btn-block" (click)="Nuevo(k)" ><i class="fas fa-edit"></i> </button>
+                <button class="btn btn-outline-secondary btn-block" (click)="Nuevo(k.Id_Pregunta)" ><i class="fas fa-edit"></i> </button>
             </td>
 
           </tr>
@@ -55,8 +60,12 @@
         </tbody>
       </table>
      
-      <div class="alert alert-danger text-center" *ngIf="(pre |llave).length==0">
+      <div class="alert alert-danger text-center" *ngIf="(pre).length==0 && !di">
         <i class="far fa-frown fa-3x">  No hay Preguntas Registrada </i> 
+       </div >
+
+       <div class="alert alert-danger text-center" *ngIf="di">
+        <i class="far fa-frown fa-3x">Sin resultados</i> 
        </div>
     </div>
 </div>

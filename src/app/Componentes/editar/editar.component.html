@@ -11,33 +11,87 @@
     </div>
 
 <div >
-    <form (ngSubmit)="Registrar()">
-        <div>
+       
+    <form (ngSubmit)="Registrar()" [formGroup]="forma">
+        <div class="form-group"  >
             <label class="text-left font-weight-bold" for="">Nombre Administrador</label>
-            <input class="form-control" [(ngModel)]="Aministrador.Nombre" name="Nombre" type="text" placeholder="EX: Joel Jimenez">
+            <input class="form-control" [(ngModel)]="Aministrador.Nombre" type="text" 
+            formControlName="Nombre"
+            placeholder="EX: Joel Jimenez">
+
+            
+         <div class="form-control-feedback danger" *ngIf="forma.controls['Nombre'].errors?.required">
+                <small class="font-weight-bold">El Nombre es Requerido</small>
+       </div>
+       <div class="form-control-feedback danger"   *ngIf="forma.controls['Nombre'].errors?.minlength">
+                <small class="font-weight-bold">Por lo menos 5 caracteres</small>
+       </div>
         </div>
-             <div>
+             <div class="form-group"  >
                 <label class="text-left font-weight-bold" for="">Usuario</label>
-                <input class="form-control" [(ngModel)]="Aministrador.Usuario" name="Usuario" type="text" placeholder="Ex: Joel1110">
+                <input class="form-control" [(ngModel)]="Aministrador.Administrador"  type="text" 
+                formControlName="Administrador"
+                placeholder="Ex: Joel1110"  (keyup)="Validar()">
+                <div>
+                    <span class=" danger font-weight-bold" *ngIf="error">{{usu}}</span>
+                </div>
+                <div>
+                        <span class=" font-weight-bold verd" *ngIf="!error">{{usu}}</span>
+                    </div>
+                <div class="form-control-feedback danger" *ngIf="forma.controls['Administrador'].errors?.required">
+                    <small class="font-weight-bold">El Usuario es Requerido</small>
+           </div>
+           <div class="form-control-feedback danger"   *ngIf="forma.controls['Administrador'].errors?.minlength">
+                    <small class="font-weight-bold">Por lo menos 5 caracteres</small>
+           </div>
+
             </div>
 
-            <div>
+            <div class="form-group"  >
                 <label class="text-left font-weight-bold" for="">Materia que dicta</label>
-                <input class="form-control" [(ngModel)]="Aministrador.Materia" name="Materia" type="text" placeholder="">
+                <input class="form-control" [(ngModel)]="Aministrador.Materia"  type="text" 
+                formControlName="Materia"
+                placeholder="Example: Español">
+
+                <div class="form-control-feedback danger" *ngIf="forma.controls['Materia'].errors?.required">
+                    <small class="font-weight-bold">La Materia es Requerido</small>
+           </div>
+           <div class="form-control-feedback danger"   *ngIf="forma.controls['Materia'].errors?.minlength">
+                    <small class="font-weight-bold">Por lo menos 5 caracteres</small>
+           </div>
             </div>
 
-        <div [hidden]="!habilita">
+        <div [hidden]="!habilita" class="form-group"  >
             <label class="text-left font-weight-bold" for="">Ingrese Contraseña</label>
-            <input class="form-control" [(ngModel)]="Aministrador.Contra" name="Contra" type="password" >
+            <input class="form-control" [(ngModel)]="Aministrador.Contra" type="password"
+            formControlName="Contra" placeholder="*******"
+            >
+            <div class="form-control-feedback danger" *ngIf="forma.controls['Contra'].errors?.required">
+                <small class="font-weight-bold">La Materia es Requerido</small>
+       </div>
+       <div class="form-control-feedback danger"   *ngIf="forma.controls['Contra'].errors?.minlength">
+                <small class="font-weight-bold">Por lo menos 5 caracteres</small>
+       </div>
+
         </div>
 
-        <div [hidden]="!habilita">
+        <div [hidden]="!habilita" class="form-group"  >
             <label class="text-left font-weight-bold" for="">Validar Contraseña</label>
-            <input class="form-control" [(ngModel)]="contraV" name="contraV" type="password" >
+            <input class="form-control" [(ngModel)]="contraV"  type="password"
+            formControlName="contraV" placeholder="Verificación"
+            >
+            <div class="form-control-feedback danger" *ngIf="forma.controls['contraV'].errors?.required ">
+                    <small class="font-weight-bold">La Verificacion es Obligatoria</small>
+                
+                </div>
+            <div class="form-control-feedback danger" *ngIf="forma.controls['contraV'].errors?.noiguales">
+                <small class="font-weight-bold">No Coiciden las Contraseña</small>
+       </div>
+       
         </div>
-        <div class="text-center">
+        <div class="text-center" class="form-group"  >
             <br>
-            <button type="submit" [disabled]="Guar1" class="btn btn-outline-primary">
+            <button type="submit" [disabled]="!forma.valid" class="btn btn-outline-primary">
             <div  *ngIf="!Guar">
                 <i class="fas fa-save" *ngIf="!Guar1"> </i> <span *ngIf="!Guar1">Guardar Administrador</span>
                 <i class="fas fa-spinner fa-spin " *ngIf="Guar1"> </i> <span *ngIf="Guar1">Guardando</span>

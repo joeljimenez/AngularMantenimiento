@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { MantenimientoService } from '../../Servicio/mantenimiento.service';
 
 @Component({
   selector: 'app-iniciar-session',
@@ -6,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IniciarSessionComponent implements OnInit {
 
-  constructor() { }
+  constructor(public control: Router , public ser: MantenimientoService) { }
 
   ngOnInit() {
   }
+  EntrarM() {
 
+this.control.navigate(['/Mantenimiento']);
+  }
 }

@@ -1,36 +1,40 @@
 
 
-<div>
-        <br>
-        <br>
+<div class="imgfondo">
+        
 
-<div class="text-center container col-lg-4">
+<div class="text-center container col-lg-8">
+
+    <div class="form">
     <div class=" text-center img-fluid ca">
             <img src="../../../assets/Imagenes/cadena.png" alt="">
     </div>
        
      
-    <form action="" >
+    <form action=""  >
 
-        <div>
-            <label for=""> Adminstrador</label>
-            <input type="text" name="" id="" class="form-control" placeholder="Adminstrador">
+        <div class="text-center">
+            <label for="" class="login_Label"> Adminstrador</label>
+            <input type="text" name="" id="" 
+            class="form-control " placeholder="Adminstrador">
         </div>
-        <div>
-                <label for=""> Contraseña</label>
-                <input type="password" name="" id="" class="form-control" placeholder="password">
+        <div class="text-center">
+                <label for="" class="login_Label"> Contraseña</label>
+                
+                <input type="password" name="" id="" 
+                class="form-control  " placeholder="password">
             </div>
             <br>
            <div class="row ">
-                <button type="submit" class="btn btn-outline-success  col-lg-6" >
-                        Entrar
-                </button>
-                
-                    <button type="submit" class="btn btn-outline-danger  col-lg-6" >
-                    Cancelar
+               <div class="col-lg-12">
+                    <button type="button" class="btn btn-outline-danger btn-block " (click)="EntrarM()">
+                            <i class="fas fa-unlock-alt fa-1x"></i>   Login
                     </button>
-           </div>
+               </div>
+              </div>
 
     </form>
 </div>
+</div>
+
 </div>

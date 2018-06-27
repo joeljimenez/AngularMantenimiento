@@ -14,22 +14,18 @@ export class AgregarUsuariosComponent implements OnInit {
 lista = true;
   public Aministrador: Datos = {
 Nombre: '',
-Usuario: '',
+Administrador: '',
 Materia: '',
 Contra: '',
 };
-public  ad:Datos[] = [];
+public  ad: Datos;
 public contraV: string;
   constructor( public control: Router , public servicio: AdminstradorService) {
- /* this.servicio.GetPregunta('-LDDa_gD0NZdsvLhrbWt').subscribe(res => {
-      console.log(res);
-    });*/
-   }
+}
 
   ngOnInit() {
      this.servicio.traerTodos().subscribe( res => {
-      this.ad = res;
-      console.log(this.ad);
+      this.ad = res.Linea;
     });
   }
 

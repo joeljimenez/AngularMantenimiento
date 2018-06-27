@@ -7,10 +7,12 @@ import { SeguimientoComponent } from './Componentes/seguimiento/seguimiento.comp
 import { AgregarComponent } from './Componentes/mantenimiento/AgregarPreguntas';
 import { EditarComponent } from './Componentes/editar/editar.component';
 import { InformacionUComponent } from './Componentes/informacion-u/informacion-u.component';
+import { IniciarSessionComponent } from './Componentes/iniciar-session/iniciar-session.component';
 
 
 
 const routes: Routes = [
+    { path: 'Login', component: IniciarSessionComponent },
     { path: 'Mantenimiento', component: MantenimientoComponent },
     { path: 'AgregarAdministrador', component: AgregarUsuariosComponent },
     { path: 'SeguimientoJugador', component: SeguimientoComponent },
@@ -18,7 +20,7 @@ const routes: Routes = [
     { path : 'Mantenimiento/AgregarPregunta/:id' , component: AgregarComponent},
     { path : 'AgregarAdministrador/Editar/:key' , component: EditarComponent},
     { path : 'SeguimientoJugador/VerInfo/:k' , component: InformacionUComponent},
-    { path: '**', pathMatch: 'full', redirectTo: 'Mantenimiento' },
+    { path: '**', pathMatch: 'full', redirectTo: 'Login' },
 
 ];
 

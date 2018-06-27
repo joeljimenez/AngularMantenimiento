@@ -18,34 +18,19 @@ export class AgregarComponent implements OnInit {
     Guar = false;
     Guar1 = false;
     forma: FormGroup; /*para validar los input*/
-
+vacio:boolean=false;
     public Pregun: Preguntas = {
-        Correcta: 0,
-        Opciones: {
-            A: {
-                AR : '',
-                indice : 1
-            },
-            B: {
-                AR : '',
-                indice : 2
-            },
-            C: {
-                AR : '',
-                indice : 3
-            },
-            D: {
-                AR : '',
-                indice : 4
-            }
-        },
+        IdPregunta: '',
         Pregunta: '',
-        Dificultad: '' ,
-        Fecha: this.fecha(),
-        Respondida: false,
-        Terminada: false,
-        Habilitado: false
-    };
+        Correcta: 1,
+        OpcionA: '',
+        OpcionB: '',
+        OpcionC: '',
+        OpcionD: '',
+        Fecha: new Date(),
+        Dificultad: 1,
+        FechaA: new Date()
+         };
 
     constructor( public parametro: ActivatedRoute , public servicio: MantenimientoService, public control: Router) {
         this.parametro.params.subscribe(para => {
@@ -64,23 +49,13 @@ this.pa = para['id'];
           }
 
           this.forma = new FormGroup({
-            'Correcta' : new FormControl ( '' , [Validators.required , Validators.minLength (1) ]),
-            'Opciones' : new FormGroup ({
-                'A' : new FormGroup({
-                  'AR': new FormControl('' , [Validators.required , Validators.minLength(5)] ),
-                }),
-                'B' : new FormGroup({
-                    'AR': new FormControl('' , [Validators.required , Validators.minLength(5)] ),
-                  }),
-                  'C' : new FormGroup({
-                    'AR': new FormControl('' , [Validators.required , Validators.minLength(5)] ),
-                  }),
-                  'D' : new FormGroup({
-                    'AR': new FormControl('' , [Validators.required , Validators.minLength(5)] ),
-                  }),
-            }),
-            'Pregunta' : new FormControl ( '' , [Validators.required , Validators.minLength(10)]),
-            'Dificultad' : new FormControl ( '' , [Validators.required ])
+            'Pregunta' : new FormControl ( '' , [Validators.required , Validators.minLength (1) ]),
+            'Correcta' : new FormControl ( '0' , [Validators.required , Validators.minLength (1) ]),
+            'OpcionA' : new FormControl ( '' , [Validators.required , Validators.minLength (1) ]),
+            'OpcionB' : new FormControl ( '' , [Validators.required , Validators.minLength (1) ]),
+            'OpcionC' : new FormControl ( '' , [Validators.required , Validators.minLength (1) ]),
+            'OpcionD' : new FormControl ( '' , [Validators.required , Validators.minLength (1) ]),
+            'Dificultad' : new FormControl ( '0' , [Validators.required , Validators.minLength (1)  ])
         });
                 }
 
@@ -102,15 +77,19 @@ this.servicio.Agregar(this.Pregun).subscribe(re => {
 });
 } else {
     this.Guar1 = true;
-    this.servicio.Actualizar(this.Pregun, this.pa).
-    subscribe(res => {
-        setTimeout(() => {
-            this.Guar1 = false;
-            this.control.navigate(['/Mantenimiento']);
-        }, 3000);
-    });
+
+        this.servicio.Actualizar(this.Pregun, this.pa).
+        subscribe(res => {
+            console.log(res);
+            setTimeout(() => {
+                this.Guar1 = false;
+                this.control.navigate(['/Mantenimiento']);
+            }, 3000);
+        });
+    }
+ 
 }
-}
+
 fecha() {
 const hoy = new Date();
 
@@ -121,10 +100,10 @@ return hoy;
 ObtenerValores() {
 this.Pregun.Pregunta = this.forma.get('Pregunta').value;
 this.Pregun.Correcta = this.forma.get('Correcta').value;
- this.Pregun.Opciones.A.AR = this.forma.get('Opciones').get('A').get('AR').value;
-this.Pregun.Opciones.B.AR = this.forma.get('Opciones').get('B').get('AR').value;
-this.Pregun.Opciones.C.AR = this.forma.get('Opciones').get('C').get('AR').value;
-this.Pregun.Opciones.D.AR = this.forma.get('Opciones').get('D').get('AR').value;
+ this.Pregun.OpcionA = this.forma.get('OpcionA').value;
+this.Pregun.OpcionB = this.forma.get('OpcionB').value;
+this.Pregun.OpcionC = this.forma.get('OpcionC').value;
+this.Pregun.OpcionD = this.forma.get('OpcionD').value;
 this.Pregun.Dificultad = this.forma.get('Dificultad').value;
 }
 

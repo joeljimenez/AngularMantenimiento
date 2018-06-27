@@ -7,7 +7,7 @@
           <br>
           <h4 class="text-justify font-weight-bold text-center h41">Administración</h4>
           <br>
-          <ul class="lista">
+          <ul class="lista" *ngIf="logueado">
               <li class="font-weight-bold text-center">
                   <a [routerLink]="['/Mantenimiento']"> <i class="fas fa-wrench fa-lg espacio"></i>Mantenimiento</a>
               </li>
@@ -18,9 +18,18 @@
                   <a [routerLink]="['/SeguimientoJugador']"> <i class="far fa-file-archive fa-lg espacio"></i>Seguimiento Estudiantil</a>
               </li>
           </ul>
+<div class="row">
 
-          <button class="btn btn-outline-dark block">
-                <i class="fas fa-long-arrow-alt-left"> </i> Salir Aministración</button>
+    <div class="col-lg-10 mx-auto">
+            <button class="btn btn-outline-success btn-block" [routerLink]="['Login']" *ngIf="!logueado" (click)="Entrar()">
+                    <i class="fas fa-unlock-alt"></i>Login</button>
+    </div>
+    <div class="col-lg-12">
+            <button class="btn btn-outline-danger btn-block" *ngIf="logueado" (click)="Salir()">
+                    <i class="fas fa-long-arrow-alt-left"> </i> Salir</button>
+    </div>
+</div>
+          
           <footer class="pan">
               <br><br>
           </footer>

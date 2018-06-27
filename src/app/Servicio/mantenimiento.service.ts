@@ -1,10 +1,11 @@
-import { pipe } from 'rxjs/internal-compatibility';
+ 
 import { Injectable} from '@angular/core';
 import { Preguntas } from '../Interfas/Pregunta';
-import { HttpClient, HttpHeaders, HttpErrorResponse, HttpParams } from '@angular/common/http';
-import { catchError, map, tap,  } from 'rxjs/operators';
-import { Observable, of, throwError } from 'rxjs';
-import { Datos } from '../Interfas/Adminstrador';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { catchError } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+ 
+import { URL_SERVICIOS } from '../Peticiones/URL';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -15,22 +16,20 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class MantenimientoService {
-  private URLBaseDatos = 'https://pregu-3c8e4.firebaseio.com/ListPregunta/Preguntas/Question.json';
-
-  private URLEditar = 'https://pregu-3c8e4.firebaseio.com/ListPregunta/Preguntas/Question/';
-
   constructor(   private http: HttpClient) { }
 /*metodo de agregar pregunta*/
   Agregar(pregunta: Preguntas): Observable<Preguntas> {
-
-return this.http.post<Preguntas>(this.URLBaseDatos, pregunta, httpOptions)
+const url = URL_SERVICIOS + '/Preguntas/registrar';
+return this.http.post<Preguntas>(url, pregunta, httpOptions)
 .pipe(
   catchError(this.handleError('Agregar')));
   }
 
 /*metodo de traer todas las preguntas*/
 getPreguntas(): Observable<Preguntas []> {
-  return this.http.get<Preguntas[]>(this.URLBaseDatos)
+
+  const url = URL_SERVICIOS + '/Preguntas/Traer_Preguntas';
+  return this.http.get<Preguntas[]>(url)
   .pipe(
     catchError(this.handleError('getPreguntas' , []))
   );
@@ -38,7 +37,7 @@ getPreguntas(): Observable<Preguntas []> {
 /*trae una sola pregunta*/
 
 getPregunta(id$: string): Observable<Preguntas> {
-  const url = `${this.URLEditar}/${ id$ }.json`;
+  const url = URL_SERVICIOS + 'Preguntas/Traer_Una_Pregunta/' + id$;
 return this.http.get<Preguntas>(url).pipe(
 catchError(this.handleError<Preguntas>(`getPregunta id)${id$}`))
 );
@@ -47,7 +46,8 @@ catchError(this.handleError<Preguntas>(`getPregunta id)${id$}`))
 /*actualiar*/
 
 Actualizar(pregunta: Preguntas , id$: string ): Observable<any> {
-  const url = `${this.URLEditar}/${ id$ }.json`;
+  const url = URL_SERVICIOS + 'Preguntas/Actualizar_Pregunta/' + id$;
+
   return this.http.put(url , pregunta , httpOptions).
   pipe(
     catchError(this.handleError<any>('Actualizar'))
@@ -56,8 +56,8 @@ Actualizar(pregunta: Preguntas , id$: string ): Observable<any> {
 
 /*Eliminar*/
 
-Eliminar(key$: string): Observable<Preguntas> {
-  const url = `${this.URLEditar}/${ key$ }.json`;
+Eliminar(id: string): Observable<Preguntas> {
+  const url = URL_SERVICIOS + 'Preguntas/Eliminar_Pregunta/' + id;
   return this.http.delete<Preguntas>(url, httpOptions).
   pipe(
     catchError(this.handleError<Preguntas>('Eliminar'))
@@ -65,16 +65,11 @@ Eliminar(key$: string): Observable<Preguntas> {
 }
 
 /*busqueda*/
-search(term: string): Observable<Datos[]> {
+search(di: string): Observable<Preguntas> {
+const url = URL_SERVICIOS + 'Preguntas/buscar_Pregunta/' + di;
 
-  term = term.trim();
-
-  const options = term ?
-   { params: new HttpParams().set('Pregunta', term) } : {};
-
-  return this.http.get<Datos[]>(this.URLBaseDatos, options)
-    .pipe(
-      catchError(this.handleError<Datos[]>('searchHeroes', []))
+  return this.http.get<Preguntas>(url).pipe(
+    catchError(this.handleError<Preguntas>(`getPregunta id)${di}`))
     );
 
 }

@@ -14,98 +14,92 @@
         <br><br>
       </div>
     
-    <form (ngSubmit)="Guardar()" [formGroup]="forma">
+    <form (ngSubmit)="Guardar()" [formGroup]="forma" novalidate>
 
        <div class="form-group" >
        <label for="Pregunta" class="text-center font-weight-bold">Pregunta</label>
        <input class="form-control" type="text" required  [(ngModel)]="Pregun.Pregunta"
         placeholder="¿Qué Significa la Metodologia de kanban?"  formControlName="Pregunta">
 
-      <div class="form-control-feedback danger" *ngIf="forma.get('Pregunta').errors?.required">
+      <div class="form-control-feedback danger" *ngIf="forma.controls['Pregunta'].errors?.required">
                <small class="font-weight-bold">La Pregunta es Requerida</small>
       </div>
-      <div class="form-control-feedback danger" *ngIf="forma.get('Pregunta').errors?.minlength">
+      <div class="form-control-feedback danger" *ngIf="forma.controls['Pregunta'].errors?.minlength">
                <small class="font-weight-bold">Por lo menos 10 caracteres</small>
       </div>
 
        </div>
 
-       <div class="form-group" formGroupName="Opciones">
+       <div class="form-group" >
 
-<div  class="form-group" formGroupName="A">
+
 
         <label for="" class="text-center font-weight-bold">Primera Opción (1)</label>
         <input class="form-control" placeholder="Opciones A" type="text" required 
-        [(ngModel)]="Pregun.Opciones.A.AR"
-         formControlName="AR">
+        [(ngModel)]="Pregun.OpcionA"
+         formControlName="OpcionA">
 
-         <div class="form-control-feedback danger" *ngIf="forma.get('Opciones.A.AR').errors?.required">
+         <div class="form-control-feedback danger" *ngIf="forma.controls['OpcionA'].errors?.required">
                 <small class="font-weight-bold">La Opciones son requeridas</small>
        </div>
-       <div class="form-control-feedback danger"   *ngIf="forma.get('Opciones.A.AR').errors?.minlength">
+       <div class="form-control-feedback danger"   *ngIf="forma.controls['OpcionA'].errors?.minlength">
                 <small class="font-weight-bold">Por lo menos 3 caracteres</small>
        </div>
 
-</div>
 
-<div class="form-group" formGroupName="B">
         <label for="" class="text-center font-weight-bold">Segunda Opción (2)</label>
         <input class="form-control" placeholder="Opciones B" type="text" required 
-        [(ngModel)]="Pregun.Opciones.B.AR"
-        formControlName="AR">
+        [(ngModel)]="Pregun.OpcionB"
+        formControlName="OpcionB">
 
-        <div class="form-control-feedback danger" *ngIf="forma.get('Opciones.B.AR').errors?.required">
+        <div class="form-control-feedback danger" *ngIf="forma.controls['OpcionB'].errors?.required">
             <small class="font-weight-bold">La Opciones son requeridas</small>
        </div>
-        <div class="form-control-feedback danger"      *ngIf="forma.get('Opciones.B.AR').errors?.minlength">
+        <div class="form-control-feedback danger"      *ngIf="forma.controls['OpcionB'].errors?.minlength">
             <small class="font-weight-bold">Por lo menos 3 caracteres</small>
       </div>
-</div>      
 
-<div class="form-group" formGroupName="C">
         <label for="" class="text-center font-weight-bold">Tercera Opción (3)</label>
         <input class="form-control" placeholder="Opciones C" type="text" required 
-        [(ngModel)]="Pregun.Opciones.C.AR"
-         formControlName="AR">
+        [(ngModel)]="Pregun.OpcionC"
+         formControlName="OpcionC">
 
-         <div class="form-control-feedback danger" *ngIf="forma.get('Opciones.C.AR').errors?.required">
+         <div class="form-control-feedback danger" *ngIf="forma.controls['OpcionC'].errors?.required">
                 <small class="font-weight-bold">La Opciones son requeridas</small>
        </div>
-       <div class="form-control-feedback danger"   *ngIf="forma.get('Opciones.C.AR').errors?.minlength">
+       <div class="form-control-feedback danger"   *ngIf="forma.controls['OpcionC'].errors?.minlength">
                 <small class="font-weight-bold">Por lo menos 3 caracteres</small>
        </div>
-    </div>    
-
-    <div class="form-group" formGroupName="D">
+  
 
             <label for="" class="text-center font-weight-bold">Cuarta Opción (4)</label>
             <input class="form-control" placeholder="Opciones D" type="text"  required 
-            [(ngModel)]="Pregun.Opciones.D.AR"
-             formControlName="AR">
+            [(ngModel)]="Pregun.OpcionD"
+             formControlName="OpcionD">
  
-             <div class="form-control-feedback danger" *ngIf="forma.get('Opciones.D.AR').errors?.required">
+             <div class="form-control-feedback danger" *ngIf="forma.controls['OpcionD'].errors?.required">
                     <small class="font-weight-bold">La Opciones son requeridas</small>
            </div>
-           <div class="form-control-feedback danger"   *ngIf="forma.get('Opciones.D.AR').errors?.minlength">
+           <div class="form-control-feedback danger"   *ngIf="forma.controls['OpcionD'].errors?.minlength">
                     <small class="font-weight-bold">Por lo menos 3 caracteres</small>
            </div>
         </div>    
 
-        </div>
+  
 
 
             <div class="form-group">
                     <label for="" class="text-center font-weight-bold">Respuesta Correcta</label>
                     <select class="form-control" required  [(ngModel)]="Pregun.Correcta"
                     formControlName="Correcta" >
-                        <option value=""  selected="true">Respuesta</option>
+                        <option value="1">---Respuesta---</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
                         <option value="4">4</option>
                 
                     </select>
-                    <div class="form-control-feedback danger" *ngIf="forma.get('Correcta').errors?.required">
+                    <div class="form-control-feedback danger" *ngIf="forma.controls['Correcta'].errors?.required">
                           <small class="font-weight-bold">Es Importante colocar la respuesta correcta.</small>
                   </div>
             </div>
@@ -116,23 +110,18 @@
                 <label for="" class="text-center font-weight-bold">Nivel De La Pregunta</label>
                 <select class="form-control" required  [(ngModel)]="Pregun.Dificultad"
                 formControlName="Dificultad" >
-                    <option value=""  selected="true">Dificultad De Pregunta</option>
+                    <option value="1" >---Dificultad De Pregunta---</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-            
                 </select>
-                <div class="form-control-feedback danger" *ngIf="forma.get('Dificultad').errors?.required">
+                <div class="form-control-feedback danger" *ngIf="forma.controls['Dificultad'].errors?.required">
                       <small class="font-weight-bold">El nivel de dificultad es necesaria.</small>
               </div>
         </div>
+        <div class="form-control-feedback danger" *ngIf="vacio">
+            <small class="font-weight-bold">tiene Campos vacios.</small>
+    </div>
         <br>
         <div class="text-center form-group">
           <button type="submit" [disabled]="!forma.valid" class="btn btn-outline-primary">
@@ -150,5 +139,4 @@
 
         </div>
     </form>
-{{!forma.valid}}
 </div>
