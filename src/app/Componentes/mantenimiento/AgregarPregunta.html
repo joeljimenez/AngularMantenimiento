@@ -71,18 +71,6 @@
                 <small class="font-weight-bold">Por lo menos 3 caracteres</small>
        </div>
   
-
-            <label for="" class="text-center font-weight-bold">Cuarta Opción (4)</label>
-            <input class="form-control" placeholder="Opciones D" type="text"  required 
-            [(ngModel)]="Pregun.OpcionD"
-             formControlName="OpcionD">
- 
-             <div class="form-control-feedback danger" *ngIf="forma.controls['OpcionD'].errors?.required">
-                    <small class="font-weight-bold">La Opciones son requeridas</small>
-           </div>
-           <div class="form-control-feedback danger"   *ngIf="forma.controls['OpcionD'].errors?.minlength">
-                    <small class="font-weight-bold">Por lo menos 3 caracteres</small>
-           </div>
         </div>    
 
   
@@ -96,7 +84,6 @@
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
-                        <option value="4">4</option>
                 
                     </select>
                     <div class="form-control-feedback danger" *ngIf="forma.controls['Correcta'].errors?.required">

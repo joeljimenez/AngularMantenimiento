@@ -4,9 +4,6 @@ import {  ActivatedRoute, Router } from '@angular/router';
 import { Preguntas } from '../../Interfas/Pregunta';
 import { MantenimientoService } from '../../Servicio/mantenimiento.service';
 import {FormGroup, Validators, FormControl} from '@angular/forms';
-import { validateConfig } from '@angular/router/src/config';
-import {Observable} from 'rxjs';
-
 
 @Component({
     selector: 'app-Agregar',
@@ -18,7 +15,7 @@ export class AgregarComponent implements OnInit {
     Guar = false;
     Guar1 = false;
     forma: FormGroup; /*para validar los input*/
-vacio:boolean=false;
+     vacio = false;
     public Pregun: Preguntas = {
         IdPregunta: '',
         Pregunta: '',
@@ -26,7 +23,6 @@ vacio:boolean=false;
         OpcionA: '',
         OpcionB: '',
         OpcionC: '',
-        OpcionD: '',
         Fecha: new Date(),
         Dificultad: 1,
         FechaA: new Date()
@@ -43,7 +39,7 @@ this.pa = para['id'];
           } else {
               this.Guar = true;
               this.servicio.getPregunta(this.pa).subscribe(res => {
-                  this.Pregun = res;
+                  this.Pregun = res.Mensaje[0];
                 console.log(this.Pregun);
              });
           }
@@ -54,7 +50,6 @@ this.pa = para['id'];
             'OpcionA' : new FormControl ( '' , [Validators.required , Validators.minLength (1) ]),
             'OpcionB' : new FormControl ( '' , [Validators.required , Validators.minLength (1) ]),
             'OpcionC' : new FormControl ( '' , [Validators.required , Validators.minLength (1) ]),
-            'OpcionD' : new FormControl ( '' , [Validators.required , Validators.minLength (1) ]),
             'Dificultad' : new FormControl ( '0' , [Validators.required , Validators.minLength (1)  ])
         });
                 }
@@ -103,7 +98,6 @@ this.Pregun.Correcta = this.forma.get('Correcta').value;
  this.Pregun.OpcionA = this.forma.get('OpcionA').value;
 this.Pregun.OpcionB = this.forma.get('OpcionB').value;
 this.Pregun.OpcionC = this.forma.get('OpcionC').value;
-this.Pregun.OpcionD = this.forma.get('OpcionD').value;
 this.Pregun.Dificultad = this.forma.get('Dificultad').value;
 }
 

@@ -5,7 +5,6 @@ export interface Preguntas {
     OpcionA: string;
     OpcionB: string;
     OpcionC: string;
-    OpcionD: string;
     Fecha: any;
     FechaA: any;
     Dificultad: number;

@@ -42,7 +42,7 @@ return this.http.get<Datos>(url).pipe(
 );
 }
 traerTodos(): Observable<Datos []> {
-  let url = URL_SERVICIOS + 'Administrador/GetUsuarios';
+  const url = URL_SERVICIOS + 'Administrador/GetUsuarios';
   return this.http.get<Datos[]>(url)
   .pipe(
     catchError(this.handleError('getPreguntas' , []))
@@ -50,7 +50,7 @@ traerTodos(): Observable<Datos []> {
 }
 
 verificar($usuario: string): Observable<Datos>{
-let url = URL_SERVICIOS + 'Administrador/Buscar_Usuario/' + $usuario;
+const url = URL_SERVICIOS + 'Administrador/Buscar_Usuario/' + $usuario;
 return this.http.get<Datos>(url).pipe(
   catchError(this.handleError<Datos>(`verificar usuario)${$usuario}`))
 );

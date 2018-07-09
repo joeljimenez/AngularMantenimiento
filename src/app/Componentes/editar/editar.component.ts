@@ -22,7 +22,7 @@ export class EditarComponent implements OnInit {
     Guar1 = false;
     pa: string;
     habilita = true;
-     contraV: string;
+    contraV: string;
   constructor(public control: Router, public servicio: AdminstradorService, public parametro: ActivatedRoute) {
 
     this.parametro.params.subscribe(para => {
@@ -33,7 +33,7 @@ export class EditarComponent implements OnInit {
                 } else {
                   this.Guar = true;
                   this.servicio.Pregunta(this.pa).subscribe(res => {
-                  this.Aministrador = res.Linea[0];
+                    this.Aministrador = res.Linea[0];
                   this.contraV=  res.Linea[0].Contra;
                    this.habilita = false;
                    });
@@ -54,7 +54,7 @@ export class EditarComponent implements OnInit {
   ngOnInit() {
   }
 
-  Validar(){
+  Validar() {
     this.servicio.verificar(this.Aministrador.Administrador).subscribe(res => {
       this.usu = res.Mensaje;
       this.error = res.Error;
@@ -64,7 +64,7 @@ export class EditarComponent implements OnInit {
 
   /*verificar si la contraseña es igual*/
   noIgual(control:FormControl): {[s: string]: boolean} {
-    let forma: any = this;
+   const forma: any = this;
     if( control.value !== forma.controls['Contra'].value){ 
       return{
         noiguales: true
